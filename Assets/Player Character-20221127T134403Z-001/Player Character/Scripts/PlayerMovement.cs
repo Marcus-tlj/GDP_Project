@@ -13,8 +13,9 @@ public class PlayerMovement : MonoBehaviour
     bool pickedup = false;
     Animator anim;
     spawn m_spawn;
-    Outline outline;
-    Rigidbody Rb_object;
+    public float strength;
+    public throwingStrength throwing;
+    public Canvas canvas;
 
     public static float playerSpeed;
 
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     {
         GameObject spawner = GameObject.FindGameObjectWithTag("spawn");
         m_spawn = spawner.GetComponent<spawn>();
-       
+        strength = 0;
 #if UNITY_ANDROID
             float zMovement = Input.GetAxis("Horizontal");
             float xMovement = Input.GetAxis("Vertical");
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        canvas.transform.rotation = Quaternion.Euler(transform.eulerAngles.x,0,transform.eulerAngles.z);
 
 #if UNITY_STANDALONE
         float zMovement = Input.GetAxis("Horizontal");
@@ -67,9 +69,34 @@ public class PlayerMovement : MonoBehaviour
                 child.SetActive(true);
                 child.transform.parent = null;
                 child.transform.position = transform.position + transform.forward *.15f;
+
                 anim.SetTrigger("dropped");
                 pickedup = false;
                
+            }
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            if (pickedup == true)
+            {
+
+                if (strength >= 0 && strength <= 0.2f)
+                {
+                    throwing.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                    throwing.setstrengthvalue(strength);
+                    strength += 0.1f * Time.deltaTime;
+
+                }
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            if (pickedup == true)
+            {
+                throwitem();
+                strength = 0;
+                throwing.setstrengthvalue(strength);
+                throwing.gameObject.transform.GetChild(0).gameObject.SetActive(false);
             }
         }
 #endif
@@ -94,11 +121,20 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+    public void throwitem()
+    {
+        GameObject child = transform.GetChild(2).gameObject;
+        child.SetActive(true);
+        child.transform.parent = null;
+        Vector3 throwingstrength = (transform.forward + transform.up) * strength;
+        child.GetComponent<Rigidbody>().AddForce(throwingstrength, ForceMode.Impulse);
+        pickedup=false;
 
-    public void outlineobjects()
+    }
+
+    public void outlineobjects()    
     {
         List<GameObject> itemlist = m_spawn.itemsSpawnList;
-        outline = m_spawn.GetComponent<Outline>();
         RaycastHit hit;
         Vector3 offset = new Vector3(0, .1f, 0);
 
