@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public float strength;
     public throwingStrength throwing;
     public Canvas canvas;
+    public Button throwButton;
+    public bool isPressed;
 
     public static float playerSpeed;
 
@@ -235,6 +238,57 @@ public class PlayerMovement : MonoBehaviour
                 r.velocity = MoveDirection.normalized * playerSpeed * speedMultiplier * dashForce;
             }
 
+        }
+    }
+
+    public void pickItem()
+    {
+        Debug.Log("pickup");
+        if (pickedup == false)
+            {
+                anim.SetTrigger("pickup");
+                grabitem();
+            }
+        else if (pickedup == true)
+            {
+                GameObject child = transform.GetChild(2).gameObject;
+                child.SetActive(true);
+                child.transform.parent = null;
+                child.transform.position = transform.position + transform.forward * .15f;
+
+                anim.SetTrigger("dropped");
+                pickedup = false;
+
+        }
+    }
+
+    public void chargeItem()
+    {
+        {
+            if (pickedup == true)
+            {
+
+                if (strength >= 0 && strength <= 0.2f)
+                {
+                    throwing.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                    throwing.setstrengthvalue(strength);
+                    strength += 0.1f * Time.deltaTime;
+
+                }
+            }
+        }
+    }
+
+    public void throwPower()
+    {
+        {
+            if (pickedup == true)
+            {
+                throwitem();
+                strength = 0;
+                throwing.setstrengthvalue(strength);
+                throwing.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            }
         }
     }
 }
