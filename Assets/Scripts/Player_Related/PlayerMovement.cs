@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
 
     public static Vector3 MoveDirection;
 
+    IEnumerator Throw;
+
     void Start()
     {
         GameObject spawner = GameObject.FindGameObjectWithTag("spawn");
@@ -60,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
             float xMovement = 2.0f * mJoystick.Vertical;
         if (Input.GetKeyDown(KeyCode.E))
         {
-
             if (pickedup == false)
             {
                 anim.SetTrigger("pickup");
@@ -77,31 +78,7 @@ public class PlayerMovement : MonoBehaviour
                 pickedup = false;
                
             }
-        }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            if (pickedup == true)
-            {
-
-                if (strength >= 0 && strength <= 0.2f)
-                {
-                    throwing.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-                    throwing.setstrengthvalue(strength);
-                    strength += 0.1f * Time.deltaTime;
-
-                }
-            }
-        }
-        if (Input.GetKeyUp(KeyCode.Q))
-        {
-            if (pickedup == true)
-            {
-                throwitem();
-                strength = 0;
-                throwing.setstrengthvalue(strength);
-                throwing.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-            }
-        }
+        }        
 #endif
 
     }
@@ -123,6 +100,44 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
+    }
+    public void ThrowButtonDown()
+    {      
+        if (pickedup == true)
+        {
+            Throw = ThrowStrengthIncrease();
+            StartCoroutine(Throw);
+        }
+    }
+
+    public void ThrowButtonUp()
+    {
+        StopCoroutine(Throw);
+        if (pickedup == true)
+        {
+            throwitem();
+            strength = 0;
+            throwing.setstrengthvalue(strength);
+            throwing.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        }
+    }
+
+    public IEnumerator ThrowStrengthIncrease()
+    {
+        while (true)
+        {
+            if (strength >= 0 && strength <= 0.2f)
+            {
+                throwing.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                throwing.setstrengthvalue(strength);
+                strength += 0.1f * Time.deltaTime;
+                yield return null;
+            }
+            else
+            {
+                break;
+            }           
+        }
     }
     public void throwitem()
     {

@@ -25,7 +25,7 @@ public class spawn : MonoBehaviour
         if (time > 5)
         {
             int number = Random.Range(0, items.Length);
-            itemsSpawnList.Add(Instantiate(items[number], spawns.position, Quaternion.identity));
+            itemsSpawnList.Add(Instantiate(items[number], spawns.position, Quaternion.identity, spawns));
             time = 0;
         }
     }

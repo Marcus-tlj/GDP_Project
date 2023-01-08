@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class dustbin_Movements : MonoBehaviour
+public class TrashBin_Movements : MonoBehaviour
 {
     Rigidbody rb;
     RaycastHit hit;
