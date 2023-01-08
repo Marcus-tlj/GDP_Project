@@ -2142,6 +2142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tag: plastic
+  bin_id: 2
 --- !u!4 &124629048 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4582568305846665030, guid: 8d1264d958f92714c81f3d43e933b4b7, type: 3}
@@ -4933,7 +4934,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63e73c74264bfb64088cd5b0a05bb5c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
   character: {fileID: 1387729122}
 --- !u!54 &269083706
 Rigidbody:
@@ -4964,6 +4964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tag: paper
+  bin_id: 0
 --- !u!4 &269083711 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 686508543496338057, guid: 3773d0ae256dc594ea12defa93a67c26, type: 3}
@@ -21498,6 +21499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tag: metal
+  bin_id: 1
 --- !u!4 &1406103503 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4228343360813323982, guid: 1a570f403ac9fbc439ef2f8f8fbaed19, type: 3}
@@ -25932,6 +25934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tag: glass
+  bin_id: 3
 --- !u!4 &1730154342 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4237041775145595386, guid: 0f7b3117c02f5a34591d7757a1876e31, type: 3}
