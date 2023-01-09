@@ -17,13 +17,12 @@ public class TrashBin_Movements : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = transform.forward * .1f;
+        rb.transform.position += transform.forward * .1f * Time.deltaTime;
         if (Physics.Raycast( transform.position, character.transform.position + new Vector3(0, .2f, 0), out hit)) {
             print(hit.collider.tag);    
-            if (hit.collider.CompareTag("Player"))
+            if (!hit.collider.CompareTag("Player"))
             {
-                print("hit");
-                transform.rotation = character.transform.rotation;
+                transform.eulerAngles = ;
             }
 }
 

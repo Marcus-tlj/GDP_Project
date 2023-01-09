@@ -17,7 +17,8 @@ public class RecyclingBin : MonoBehaviour
         //Essentially this is the check for the correct or wrong trash being thrown inside 
 
         //This Code would run if the player throws the Correct piece of Trash into the bin
-        if (other.gameObject.tag == Tag)
+        
+        if (other.gameObject.tag == Tag )
         {
             //Debug.Log("Stored " + Tag);
             //Destroy the game object so that it is no longer visible
@@ -26,7 +27,7 @@ public class RecyclingBin : MonoBehaviour
             points.IncrementBinCleanCount(bin_id);
             points.ChangePoints(Global_Variables.PtsGainForCorrectDisposal);
         }
-        else
+        else if(other.gameObject.tag == "paper" || other.gameObject.tag == "metal" || other.gameObject.tag == "plastic")
         {
             Destroy(other.gameObject);
             points.ResetStreak();
