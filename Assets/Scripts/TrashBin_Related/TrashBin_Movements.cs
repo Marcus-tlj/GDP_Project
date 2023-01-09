@@ -7,6 +7,8 @@ public class TrashBin_Movements : MonoBehaviour
     Rigidbody rb;
     RaycastHit hit;
     public GameObject character;
+    public float time;
+    float speed = .1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,14 +19,24 @@ public class TrashBin_Movements : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.transform.position += transform.forward * .1f * Time.deltaTime;
-        if (Physics.Raycast( transform.position, character.transform.position + new Vector3(0, .2f, 0), out hit)) {
-            print(hit.collider.tag);    
-            if (!hit.collider.CompareTag("Player"))
-            {
-                transform.eulerAngles = ;
-            }
-}
+        time += Time.deltaTime;
+        transform.position += transform.forward * speed * Time.deltaTime;
+        if (transform.localPosition.z >= 1)
+        {
 
+            transform.Rotate(0,180,0);
+        }
+        if (transform.localPosition.z <= 0 )
+        {
+
+            transform.Rotate(0, 180, 0);
+        }
+        if(time > 10)
+        {
+            speed += .01f;
+            time = 0;
+        }
     }
+
+
 }
