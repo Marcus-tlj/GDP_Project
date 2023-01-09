@@ -6,7 +6,6 @@ public class TrashBin_Movements : MonoBehaviour
 {
     Rigidbody rb;
     RaycastHit hit;
-    public GameObject character;
     public float time;
     float speed = .1f;
     // Start is called before the first frame update
