@@ -208,12 +208,12 @@ public class PlayerMovement : MonoBehaviour
         {
             if (m_spawn.itemsSpawnList[i] != null)
             {
-                m_spawn.itemsSpawnList[i].GetComponent<Outline>().enabled = false;
+                m_spawn.itemsSpawnList[i].transform.GetChild(0).GetComponent<Outline>().enabled = false;
                 if (Physics.SphereCast(transform.position + offset, .05f, transform.forward, out hit, .15f) || Physics.SphereCast(transform.position + new Vector3(0, .015f, 0), .01f, transform.forward, out hit, .15f))
                 {
-                    if (hit.collider.CompareTag("plastic") || hit.collider.CompareTag("glass") || hit.collider.CompareTag("metal") )
+                    if (hit.collider.CompareTag("plastic") || hit.collider.CompareTag("glass") || hit.collider.CompareTag("metal") || hit.collider.CompareTag("paper") || hit.collider.CompareTag("junk"))
                     {
-                        hit.collider.GetComponent<Outline>().enabled = true;
+                        hit.collider.transform.GetChild(0).GetComponent<Outline>().enabled = true;
                     }
 
                 }
@@ -233,7 +233,7 @@ public class PlayerMovement : MonoBehaviour
                 if (Physics.SphereCast(transform.position+offset,.05f,transform.forward,out hit,.15f) || Physics.SphereCast(transform.position+ new Vector3(0,.015f,0), .01f, transform.forward, out hit, .15f))
                 {
                     Debug.DrawRay(transform.position, transform.forward, Color.red, 60f);
-                    if (hit.collider.CompareTag("plastic")|| hit.collider.CompareTag("glass")|| hit.collider.CompareTag("metal") )
+                    if (hit.collider.CompareTag("plastic")|| hit.collider.CompareTag("glass")|| hit.collider.CompareTag("metal") || hit.collider.CompareTag("paper") || hit.collider.CompareTag("junk"))
                     {
 
                         hit.collider.gameObject.transform.parent = transform;
