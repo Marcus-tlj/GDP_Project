@@ -10,6 +10,8 @@ TagManager:
   - glass
   - ground
   - sink
+  - paper
+  - junk
   layers:
   - Default
   - TransparentFX

@@ -34,7 +34,7 @@ public class ItemHandler : MonoBehaviour
 
         rb.mass = 0.1f;
 
-        Debug.Log("Material: " + item.material + " , " + "isDirty: " + item.isDirty);
+        Debug.Log("Material: " + item.material + "," + "isDirty: " + item.isDirty);
         
     }
 

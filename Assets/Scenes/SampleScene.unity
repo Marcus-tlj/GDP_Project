@@ -41057,11 +41057,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 0
-  items:
-  - {fileID: 6513035044427053816}
-  - {fileID: 3273094933069168438}
-  - {fileID: 6811617765314270930}
   spawns: {fileID: 811467489}
+  item: {fileID: 2971270758696935087, guid: d7e5fe230b14de041a938f3553dff831, type: 3}
   itemsSpawnList: []
 --- !u!114 &5942003326020340858
 MonoBehaviour:
