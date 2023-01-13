@@ -7,7 +7,7 @@ public class TrashBin_Movements : MonoBehaviour
     Rigidbody rb;
     RaycastHit hit;
     public float time;
-    float speed = .1f;
+    public float speed = .1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,10 +30,13 @@ public class TrashBin_Movements : MonoBehaviour
 
             transform.Rotate(0, 180, 0);
         }
-        if(time > 10)
+        if (speed < .5f)
         {
-            speed += .01f;
-            time = 0;
+            if (time > 10)
+            {
+                speed += .01f;
+                time = 0;
+            }
         }
     }
 

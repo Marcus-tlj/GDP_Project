@@ -9,6 +9,7 @@ TagManager:
   - plastic
   - glass
   - ground
+  - sink
   layers:
   - Default
   - TransparentFX

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    public GameObject washingParticle;
 #if UNITY_ANDROID
         public FixedJoystick mJoystick;
 #endif
@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
 
     float dashCooldown;
 
+    public GameObject sink;
+    public bool wash;
     public static Vector3 MoveDirection;
 
     IEnumerator Throw;
@@ -46,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
 #endif
         r = GetComponent<Rigidbody>();
         r.freezeRotation = true;
+        wash = false;
     }
 
     private void Update()
@@ -78,15 +81,28 @@ public class PlayerMovement : MonoBehaviour
                 pickedup = false;
                
             }
-        }        
+        }
+       
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (pickedup == true)
+            {
+                washing();
+            }
+        }
 #endif
 
     }
 
     void FixedUpdate()
     {
+        outlinesink();
         outlineobjects();
-        movePlayer();
+
+        if (!wash)
+        {
+            movePlayer();
+        }
         sprint();
         dash(dashDelay);
 
@@ -100,6 +116,23 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
+    }
+    public void washing()
+    {
+        RaycastHit hit;
+        Vector3 offset = new Vector3(0, .1f, 0);
+        if (Physics.SphereCast(transform.position + offset, .05f, transform.forward, out hit, .15f) || Physics.SphereCast(transform.position + new Vector3(0, .015f, 0), .01f, transform.forward, out hit, .15f))
+        {
+            if (hit.collider.CompareTag("sink"))
+            {
+                GameObject sinkbar = hit.collider.transform.GetChild(0).gameObject;
+                sinkbar.SetActive(true);
+                hit.collider.GetComponent<SinkScript>().enabled = true;
+                sinkbar.gameObject.GetComponentInChildren<SinkBar>().setwashingtime(0f);
+                hit.collider.GetComponent<SinkScript>().washingtime = 0f;
+                wash = true;
+            }
+        }
     }
     public void ThrowButtonDown()
     {      
@@ -150,6 +183,21 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void outlinesink()
+    {
+        RaycastHit hit;
+        Vector3 offset = new Vector3(0, .1f, 0);
+        sink.GetComponent<Outline>().enabled = false;
+        if (Physics.SphereCast(transform.position + offset, .05f, transform.forward, out hit, .15f)){
+            if(hit.collider.CompareTag("sink"))
+            {
+                hit.collider.GetComponent<Outline>().enabled = true;
+            }
+
+        }
+
+    }
+
     public void outlineobjects()    
     {
         List<GameObject> itemlist = m_spawn.itemsSpawnList;
@@ -163,10 +211,11 @@ public class PlayerMovement : MonoBehaviour
                 m_spawn.itemsSpawnList[i].GetComponent<Outline>().enabled = false;
                 if (Physics.SphereCast(transform.position + offset, .05f, transform.forward, out hit, .15f) || Physics.SphereCast(transform.position + new Vector3(0, .015f, 0), .01f, transform.forward, out hit, .15f))
                 {
-                    if (hit.collider.CompareTag("plastic") || hit.collider.CompareTag("glass") || hit.collider.CompareTag("metal"))
+                    if (hit.collider.CompareTag("plastic") || hit.collider.CompareTag("glass") || hit.collider.CompareTag("metal") )
                     {
                         hit.collider.GetComponent<Outline>().enabled = true;
                     }
+
                 }
             }
         }
