@@ -5,8 +5,9 @@ using UnityEngine;
 public class spawn : MonoBehaviour
 {
     public float time;
-    public GameObject[] items;
+    // public GameObject[] items;
     public Transform spawns;
+    public GameObject item;
     public List<GameObject> itemsSpawnList;
     // Start is called before the first frame update
     void Start()
@@ -24,8 +25,8 @@ public class spawn : MonoBehaviour
     {
         if (time > 5)
         {
-            int number = Random.Range(0, items.Length);
-            itemsSpawnList.Add(Instantiate(items[number], spawns.position, Quaternion.identity, spawns));
+            // int number = Random.Range(0, items.Length);
+            itemsSpawnList.Add(Instantiate(item, spawns.position, Quaternion.identity, spawns));
             time = 0;
         }
     }
