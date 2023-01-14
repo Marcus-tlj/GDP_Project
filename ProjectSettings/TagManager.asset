@@ -12,6 +12,7 @@ TagManager:
   - sink
   - paper
   - junk
+  - tuttext
   layers:
   - Default
   - TransparentFX
