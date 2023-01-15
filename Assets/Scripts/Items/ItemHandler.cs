@@ -26,6 +26,11 @@ public class ItemHandler : MonoBehaviour
 
         //outline.OutlineColor = Color.red;
 
+        if(item.itemModel.GetComponent<MeshFilter>() == null)
+        {
+            item.itemModel.AddComponent<MeshFilter>();
+        }
+
         meshCollide.sharedMesh = item.itemModel.GetComponent<MeshFilter>().sharedMesh;
 
         //if item has 2 materials, check is dirty and assign material

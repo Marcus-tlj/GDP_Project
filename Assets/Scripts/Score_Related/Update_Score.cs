@@ -9,5 +9,6 @@ public class Update_Score : MonoBehaviour
     void Update()
     {
         Score_text.text = Global_Variables.TotalPoints.ToString();
+
     }
 }
