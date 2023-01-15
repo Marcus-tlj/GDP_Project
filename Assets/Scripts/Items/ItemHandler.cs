@@ -28,6 +28,8 @@ public class ItemHandler : MonoBehaviour
 
         meshCollide.sharedMesh = item.itemModel.GetComponent<MeshFilter>().sharedMesh;
 
+        //if item has 2 materials, check is dirty and assign material
+
         gameObject.tag = item.material.ToString();
 
         rb = GetComponent<Rigidbody>();
