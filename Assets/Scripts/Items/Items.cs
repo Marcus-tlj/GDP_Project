@@ -30,7 +30,7 @@ public class Item
     public Item(itemMaterial material, bool dirty)
     {
         this.isDirty = dirty;
-        this.material= material;
+        this.material = material;
 
         if (material == itemMaterial.metal)
         {
