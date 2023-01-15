@@ -20,11 +20,11 @@ public class ItemHandler : MonoBehaviour
 
         gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 
-        _item.AddComponent<Outline>();
+        //_item.AddComponent<Outline>();
 
-        outline = _item.GetComponent<Outline>();
+        //outline = _item.GetComponent<Outline>();
 
-        outline.OutlineColor = Color.red;
+        //outline.OutlineColor = Color.red;
 
         meshCollide.sharedMesh = item.itemModel.GetComponent<MeshFilter>().sharedMesh;
 
