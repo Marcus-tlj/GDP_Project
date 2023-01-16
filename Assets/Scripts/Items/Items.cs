@@ -113,5 +113,7 @@ public class Item
             int ranMesh = Random.Range(0, junkMeshes.Length);
             this.itemModel = junkMeshes[ranMesh];
         }
+
+
     }
 }
