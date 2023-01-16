@@ -22,8 +22,6 @@ public class Retry : MonoBehaviour
     public void retrygame()
     {
         SceneManager.LoadScene(0);
-        Global_Variables.TotalPoints = 0;
-        points.ResetStreak();
     }
     public void leave()
     {
