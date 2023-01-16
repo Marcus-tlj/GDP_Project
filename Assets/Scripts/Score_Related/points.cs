@@ -15,6 +15,14 @@ public class points : MonoBehaviour
         Global_Variables.BinCleanCount[bin_id] = 0;
     }
 
+    public static void ResetBinCleanCount()
+    {
+        Global_Variables.BinCleanCount[0] = 0;
+        Global_Variables.BinCleanCount[1] = 0;
+        Global_Variables.BinCleanCount[2] = 0;
+        Global_Variables.BinCleanCount[3] = 0;
+    }
+
     public static void IncrementStreak()
     {
         Global_Variables.Streak += 1;
@@ -46,5 +54,13 @@ public class points : MonoBehaviour
         ResetBinCleanCount(bin_id);
     }
 
-
+    public static void ResetGame()
+    {
+        
+        ResetStreak();
+        Global_Variables.TotalPoints = 0;
+        ResetBinCleanCount();
+        Global_Variables.PointsMultiplier = 1f;
+        Global_Variables.StreakMultiplier = 1f;
+    }
 }

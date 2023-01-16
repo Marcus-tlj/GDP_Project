@@ -41,6 +41,7 @@ public class DestroyItems : MonoBehaviour
 
             if (Global_Variables.TotalPoints > PlayerPrefs.GetFloat("HighScore"))
             {
+                points.ResetGame();
                 PlayerPrefs.SetFloat("HighScore", Global_Variables.TotalPoints);
             }
             
