@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 
 public class hardcode_pog : MonoBehaviour
 {
+    //public GameObject itemthingy;
     public GameObject bin;
     public GameObject player;
     GameObject gui;
@@ -62,6 +63,7 @@ public class hardcode_pog : MonoBehaviour
                 movetut = true;
                 cylinder.SetActive(true);
                 cameraMovement.player = cylinder.transform;
+                //itemthingy.SetActive(true);
             }
 
 
