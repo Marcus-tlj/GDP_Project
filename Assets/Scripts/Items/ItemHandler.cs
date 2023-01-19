@@ -24,7 +24,7 @@ public class ItemHandler : MonoBehaviour
         GameObject _item =  Instantiate(item.itemModel, transform.position, transform.rotation);
         _item.transform.parent = gameObject.transform;
 
-        gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 
         if (item.itemModel.GetComponent<Multiple_Materials>() != null)
         {

@@ -5,12 +5,15 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    public bool isMoving;
+
     public GameObject washingParticle;
 
     public FixedJoystick mJoystick;
 
     Rigidbody r;
-    bool pickedup = false;
+    public bool pickedup = false;
     Animator anim;
     spawn m_spawn;
     public float strength;
@@ -175,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (m_spawn.itemsSpawnList[i] != null)
             {
-                if (Physics.SphereCast(transform.position+offset,.05f,transform.forward,out hit,1f) || Physics.SphereCast(transform.position+ new Vector3(0,.015f,0), .01f, transform.forward, out hit, .15f))
+                if (Physics.SphereCast(transform.position+offset,.05f,transform.forward,out hit,2f) || Physics.SphereCast(transform.position+ new Vector3(0,.015f,0), .01f, transform.forward, out hit, .15f))
                 {                    
                     if (hit.collider.CompareTag("plastic")|| hit.collider.CompareTag("glass")|| hit.collider.CompareTag("metal") || hit.collider.CompareTag("paper") || hit.collider.CompareTag("junk"))
                     {
@@ -204,6 +207,15 @@ public class PlayerMovement : MonoBehaviour
         MoveDirection = Vector3.forward * xMovement + Vector3.right * zMovement;
 
         r.velocity = MoveDirection.normalized * playerSpeed * speedMultiplier;
+
+        if (r.velocity.sqrMagnitude > 0)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
 
         //plays animation according to player's movement
         anim.SetFloat("MoveSpeedX", Mathf.Abs(xMovement));
