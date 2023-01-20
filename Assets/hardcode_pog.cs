@@ -63,6 +63,8 @@ public class hardcode_pog : MonoBehaviour
     bool movetut = false;
     bool backtoplayer = false;
 
+    float t;
+
     public GameObject washbutton;
     public TextMeshProUGUI washtext;
 
@@ -80,11 +82,10 @@ public class hardcode_pog : MonoBehaviour
         cm1.speed = 0;
         cm2.speed= 0;
 
+        
+            
+        
 
-        throwit.enabled = false;
-        itemthingy.transform.GetChild(0).GetComponent<Renderer>().enabled = false;
-        dirtythingy.transform.GetChild(0).GetComponent<Renderer>().enabled = false;
-        item3.GetComponent<Renderer>().enabled = false;
 
         //itemthingy.transform.GetComponent<ItemHandler>().item.material = Item.itemMaterial.paper;
         //itemthingy.transform.GetComponent<ItemHandler>().item.isDirty = false; 
@@ -104,7 +105,14 @@ public class hardcode_pog : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (!pm.isMoving && !movetut)
+        {
+            throwit.enabled = false;
+            itemthingy.transform.GetChild(0).GetComponent<Renderer>().enabled = false;
+            dirtythingy.transform.GetChild(0).GetComponent<Renderer>().enabled = false;
+            item3.GetComponent<Renderer>().enabled = false;
+        }
+      
 
         if (pm.isMoving == true)
         {
