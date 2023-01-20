@@ -7,6 +7,7 @@ public class SinkScript : MonoBehaviour
     public SinkBar sinkbar;
     public float washingtime;
     public PlayerMovement Pm;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +23,25 @@ public class SinkScript : MonoBehaviour
         sinkbar.setwashingtime(washingtime);
         if(washingtime > 5)
         {
-            Pm.wash = false;
+            if (Pm.wash) { 
+            }
             transform.GetChild(0).gameObject.SetActive(false);
+            //if (Pm.pickedup)
+            //{
+               // if (Pm.heldObject.transform.GetChild(0).GetComponent<ItemHandler>() != null)
+               // {
+                //    Pm.heldObject.transform.GetChild(0).GetComponent<ItemHandler>().item.isDirty = false;
+                //}
+                //if (Pm.heldObject.transform.GetChild(0).GetComponent<dirtytut>() != null)
+                //{
+                //    Pm.heldObject.transform.GetChild(0).GetComponent<dirtytut>().item.isDirty = false;
+               // }
 
+            //}
+            
+            Pm.wash = false;
+            
+            
         }
 
     }

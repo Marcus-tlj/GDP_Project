@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 
-public class ItemHandler : MonoBehaviour
+public class Papere : MonoBehaviour
 {
     //reference for the item class
-    public Item item;
+    private Item item;
     //reference for the Multiple_Material class which is on certain items
     private Multiple_Materials m_materials;
     private MeshRenderer mesh_renderer;
@@ -17,12 +16,6 @@ public class ItemHandler : MonoBehaviour
     public Texture dirtyPaper;
     public Texture dirtyJunk;
 
-    public Texture cleanGlass;
-    public Texture cleanMetal;
-    public Texture cleanPlastic;
-    public Texture cleanPaper;
-    public Texture cleanJunk;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -31,9 +24,9 @@ public class ItemHandler : MonoBehaviour
 
         MeshCollider meshCollide = GetComponent<MeshCollider>();
 
-        item = new Item();
+        item = new Item(Item.itemMaterial.paper, false);
 
-        GameObject _item =  Instantiate(item.itemModel, transform.position, transform.rotation);
+        GameObject _item = Instantiate(item.itemModel, transform.position, transform.rotation);
         _item.transform.parent = gameObject.transform;
 
         if (item.isDirty && item.material == Item.itemMaterial.glass)
@@ -41,57 +34,48 @@ public class ItemHandler : MonoBehaviour
             _item.GetComponent<Renderer>().material.SetTexture("_MainTex", dirtyGlass);
             gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
         }
-        if (!item.isDirty && item.material == Item.itemMaterial.glass)
+        else
         {
-            _item.GetComponent<Renderer>().material.SetTexture("_MainTex", cleanGlass);
             gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
         }
-
         if (item.isDirty && item.material == Item.itemMaterial.metal)
         {
             _item.GetComponent<Renderer>().material.SetTexture("_MainTex", dirtyMetal);
             gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         }
-        if (!item.isDirty && item.material == Item.itemMaterial.metal)
+        else
         {
-            _item.GetComponent<Renderer>().material.SetTexture("_MainTex", cleanMetal);
             gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         }
-
         if (item.isDirty && item.material == Item.itemMaterial.plastic)
         {
             _item.GetComponent<Renderer>().material.SetTexture("_MainTex", dirtyPlastic);
             gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         }
-        if (!item.isDirty && item.material == Item.itemMaterial.plastic)
+        else
         {
-            _item.GetComponent<Renderer>().material.SetTexture("_MainTex", cleanPlastic);
             gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         }
-
         if (item.isDirty && item.material == Item.itemMaterial.paper)
         {
             _item.GetComponent<Renderer>().material.SetTexture("_MainTex", dirtyPaper);
-            gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
         }
-        if (!item.isDirty && item.material == Item.itemMaterial.paper)
+        else
         {
-            _item.GetComponent<Renderer>().material.SetTexture("_MainTex", cleanPaper);
-            gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
         }
-
         if (item.isDirty && item.material == Item.itemMaterial.junk)
         {
             _item.GetComponent<Renderer>().material.SetTexture("_MainTex", dirtyJunk);
             gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         }
-        if (!item.isDirty && item.material == Item.itemMaterial.junk)
+        else
         {
-            _item.GetComponent<Renderer>().material.SetTexture("_MainTex", cleanJunk);
             gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         }
 
-      
+
 
         meshCollide.sharedMesh = item.itemModel.GetComponent<MeshFilter>().sharedMesh;
 
@@ -102,7 +86,7 @@ public class ItemHandler : MonoBehaviour
         rb.mass = 0.1f;
 
         Debug.Log("Material: " + item.material + "," + "isDirty: " + item.isDirty);
-        
+
     }
 
     // Update is called once per frame

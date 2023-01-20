@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
     public FixedJoystick mJoystick;
 
+    //public GameObject heldObject;
+
     Rigidbody r;
     public bool pickedup = false;
     Animator anim;
@@ -29,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     public float dashDelay = 20f;
     public float speedMultiplier = 5;
     public float dashForce = 2;
+
+    public bool doneWashing = false;
 
     float dashCooldown;
 
@@ -65,6 +69,11 @@ public class PlayerMovement : MonoBehaviour
             movePlayer();
         }
         sprint();
+
+        //if (pickedup)
+       // {
+        //    heldObject = gameObject.transform.GetChild(2).gameObject;
+        //}
     }
     public void washing()
     {
@@ -72,15 +81,21 @@ public class PlayerMovement : MonoBehaviour
         Vector3 offset = new Vector3(0, .1f, 0);
         if (Physics.SphereCast(transform.position + offset, .05f, transform.forward, out hit, .15f) || Physics.SphereCast(transform.position + new Vector3(0, .015f, 0), .01f, transform.forward, out hit, .15f))
         {
-            if (hit.collider.CompareTag("sink"))
-            {
-                GameObject sinkbar = hit.collider.transform.GetChild(0).gameObject;
-                sinkbar.SetActive(true);
-                hit.collider.GetComponent<SinkScript>().enabled = true;
-                sinkbar.gameObject.GetComponentInChildren<SinkBar>().setwashingtime(0f);
-                hit.collider.GetComponent<SinkScript>().washingtime = 0f;
-                wash = true;
-            }
+
+            doneWashing = true;
+
+            /* if (hit.collider.CompareTag("sink"))
+             {
+
+
+
+                 GameObject sinkbar = hit.collider.transform.GetChild(0).gameObject;
+                 sinkbar.SetActive(true);
+                 hit.collider.GetComponent<SinkScript>().enabled = true;
+                 sinkbar.gameObject.GetComponentInChildren<SinkBar>().setwashingtime(0f);
+                 hit.collider.GetComponent<SinkScript>().washingtime = 0f;
+                 wash = true;
+             } */
         }
     }
     public void ThrowButtonDown()
@@ -125,6 +140,7 @@ public class PlayerMovement : MonoBehaviour
     {
         GameObject child = transform.GetChild(2).gameObject;
         child.SetActive(true);
+        
         child.transform.parent = null;
         Vector3 throwingstrength = (transform.forward + transform.up) * strength;
         child.GetComponent<Rigidbody>().AddForce(throwingstrength, ForceMode.Impulse);

@@ -6,6 +6,7 @@ public class RecyclingBin : MonoBehaviour
 {
     public string Tag;
     public int bin_id;
+    public static int thrown = 0;
 
     private void Start()
     {
@@ -22,6 +23,9 @@ public class RecyclingBin : MonoBehaviour
         {
             //Debug.Log("Stored " + Tag);
             //Destroy the game object so that it is no longer visible
+
+            thrown ++;
+
             Destroy(other.gameObject);
             points.IncrementStreak();
             points.IncrementBinCleanCount(bin_id);
@@ -29,7 +33,7 @@ public class RecyclingBin : MonoBehaviour
         }
         else if(other.gameObject.tag == "paper" || other.gameObject.tag == "metal" || other.gameObject.tag == "plastic")
         {
-            Destroy(other.gameObject);
+            // Destroy(other.gameObject);
             points.ResetStreak();
             points.ResetBinCleanCount(bin_id);
             points.Contaminated(bin_id);

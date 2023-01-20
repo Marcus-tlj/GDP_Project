@@ -14,8 +14,16 @@ public class coli : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            hardcode_pog.cyl = true;
-            gameObject.SetActive(false);
+            if (!hardcode_pog.sinkmoment)
+            {
+                hardcode_pog.cyl = true;
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                hardcode_pog.sinkProgress = true;
+            }
+
         }
     }
 
