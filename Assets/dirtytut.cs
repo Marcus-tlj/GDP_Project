@@ -7,7 +7,6 @@ public class dirtytut : MonoBehaviour
     //reference for the item class
     public Item item;
     //reference for the Multiple_Material class which is on certain items
-    private Multiple_Materials m_materials;
     private MeshRenderer mesh_renderer;
 
     public PlayerMovement pm;
@@ -55,22 +54,5 @@ public class dirtytut : MonoBehaviour
 
         Debug.Log("Material: " + item.material + "," + "isDirty: " + item.isDirty);
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //This Statement would only trigger for certain models because some of them do not have clean/dirty textures, only 1
-        if (m_materials != null)
-        {
-            if (item.isDirty == true) //Item is Dirty
-            {
-                mesh_renderer.material = m_materials.Texture_Dirty;
-            }
-            else if (item.isDirty == false) //Item is Clean
-            {
-                mesh_renderer.material = m_materials.Texture_Clean;
-            }
-        }
     }
 }

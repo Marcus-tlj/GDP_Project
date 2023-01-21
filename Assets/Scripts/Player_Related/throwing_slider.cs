@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class throwingStrength : MonoBehaviour
+public class throwing_slider : MonoBehaviour
 {
     public Slider slider;
 

@@ -7,8 +7,6 @@ public class ItemHandler : MonoBehaviour
 {
     //reference for the item class
     public Item item;
-    //reference for the Multiple_Material class which is on certain items
-    private Multiple_Materials m_materials;
     private MeshRenderer mesh_renderer;
 
     public Texture dirtyGlass;
@@ -23,6 +21,8 @@ public class ItemHandler : MonoBehaviour
     public Texture cleanPaper;
     public Texture cleanJunk;
 
+    GameObject _item;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +33,7 @@ public class ItemHandler : MonoBehaviour
 
         item = new Item();
 
-        GameObject _item =  Instantiate(item.itemModel, transform.position, transform.rotation);
+        _item = Instantiate(item.itemModel, transform.position, transform.rotation);
         _item.transform.parent = gameObject.transform;
 
         if (item.isDirty && item.material == Item.itemMaterial.glass)
@@ -91,8 +91,6 @@ public class ItemHandler : MonoBehaviour
             gameObject.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         }
 
-      
-
         meshCollide.sharedMesh = item.itemModel.GetComponent<MeshFilter>().sharedMesh;
 
         gameObject.tag = item.material.ToString();
@@ -105,20 +103,56 @@ public class ItemHandler : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //This Statement would only trigger for certain models because some of them do not have clean/dirty textures, only 1
-        if (m_materials != null)
+        UpdateTexture(gameObject.transform.GetChild(0).gameObject);
+    }
+
+    void UpdateTexture(GameObject _item)
+    {
+        if (item.isDirty && item.material == Item.itemMaterial.glass)
         {
-            if (item.isDirty == true) //Item is Dirty
-            {
-                mesh_renderer.material = m_materials.Texture_Dirty;
-            }
-            else if (item.isDirty == false) //Item is Clean
-            {
-                mesh_renderer.material = m_materials.Texture_Clean;
-            }
+            _item.GetComponent<Renderer>().material.SetTexture("_MainTex", dirtyGlass);
+        }
+        if (!item.isDirty && item.material == Item.itemMaterial.glass)
+        {
+            _item.GetComponent<Renderer>().material.SetTexture("_MainTex", cleanGlass);
+        }
+
+        if (item.isDirty && item.material == Item.itemMaterial.metal)
+        {
+            _item.GetComponent<Renderer>().material.SetTexture("_MainTex", dirtyMetal);
+        }
+        if (!item.isDirty && item.material == Item.itemMaterial.metal)
+        {
+            _item.GetComponent<Renderer>().material.SetTexture("_MainTex", cleanMetal);
+        }
+
+        if (item.isDirty && item.material == Item.itemMaterial.plastic)
+        {
+            _item.GetComponent<Renderer>().material.SetTexture("_MainTex", dirtyPlastic);
+        }
+        if (!item.isDirty && item.material == Item.itemMaterial.plastic)
+        {
+            _item.GetComponent<Renderer>().material.SetTexture("_MainTex", cleanPlastic);
+        }
+
+        if (item.isDirty && item.material == Item.itemMaterial.paper)
+        {
+            _item.GetComponent<Renderer>().material.SetTexture("_MainTex", dirtyPaper);
+        }
+        if (!item.isDirty && item.material == Item.itemMaterial.paper)
+        {
+            _item.GetComponent<Renderer>().material.SetTexture("_MainTex", cleanPaper);
+        }
+
+        if (item.isDirty && item.material == Item.itemMaterial.junk)
+        {
+            _item.GetComponent<Renderer>().material.SetTexture("_MainTex", dirtyJunk);
+        }
+        if (!item.isDirty && item.material == Item.itemMaterial.junk)
+        {
+            _item.GetComponent<Renderer>().material.SetTexture("_MainTex", cleanJunk);
         }
     }
 }

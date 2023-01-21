@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.43675524, g: 0.48437047, b: 0.56462413, a: 1}
+  m_IndirectSpecularColor: {r: 0.43431738, g: 0.48123193, b: 0.562139, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4362,6 +4362,10 @@ PrefabInstance:
       propertyPath: cursor
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7190828515475205429, guid: 96dd8e1862c63ad45a7d2429987e4ea4, type: 3}
+      propertyPath: m_spawn
+      value: 
+      objectReference: {fileID: 5942003326020340857}
     - target: {fileID: 7190828515475205429, guid: 96dd8e1862c63ad45a7d2429987e4ea4, type: 3}
       propertyPath: strength
       value: 0.2
@@ -15295,7 +15299,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.00999976, y: -0.010000339}
   m_SizeDelta: {x: 1, y: 0.6}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16751,7 +16755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &956252080
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24760,6 +24764,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196402723}
   m_Enabled: 1
+--- !u!114 &1387729128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196402723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73c41d74fba60914290a18f155fd14ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwing: {fileID: 956252084}
 --- !u!1 &1392606383
 GameObject:
   m_ObjectHideFlags: 0
@@ -27975,7 +27992,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1609043641
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35720,19 +35737,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2101400590}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1387729123}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: chargeItem
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2101400590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35788,8 +35793,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1387729123}
-          m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        - m_Target: {fileID: 1387729128}
+          m_TargetAssemblyTypeName: throwing_script, Assembly-CSharp
           m_MethodName: ThrowButtonUp
           m_Mode: 1
           m_Arguments:
@@ -35804,8 +35809,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1387729123}
-          m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        - m_Target: {fileID: 1387729128}
+          m_TargetAssemblyTypeName: throwing_script, Assembly-CSharp
           m_MethodName: ThrowButtonDown
           m_Mode: 1
           m_Arguments:
@@ -42434,6 +42439,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!23 &3703739745417950957
 MeshRenderer:
   m_ObjectHideFlags: 0

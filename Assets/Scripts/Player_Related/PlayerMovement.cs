@@ -15,13 +15,10 @@ public class PlayerMovement : MonoBehaviour
     //public GameObject heldObject;
 
     Rigidbody r;
-    public bool pickedup = false;
+    private static bool pickedup = false;
     Animator anim;
-    spawn m_spawn;
-    public float strength;
-    public throwingStrength throwing;
+    public spawn m_spawn;
     public Canvas canvas;
-    public Button throwButton;
     public bool isPressed;
 
     public static float playerSpeed;
@@ -42,11 +39,20 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Throw;
 
+    public static bool getPickedUp()
+    {
+        return pickedup;
+    }
+
+    public static void setPickedUp(bool value)
+    {
+        pickedup = value;
+    }
+
     void Start()
     {
-        GameObject spawner = GameObject.FindGameObjectWithTag("spawn");
-        m_spawn = spawner.GetComponent<spawn>();
-        strength = 0;
+        //GameObject spawner = GameObject.FindGameObjectWithTag("spawn");
+        //m_spawn = spawner.GetComponent<spawn>();
 
         anim = GetComponent<Animator>();
         r = GetComponent<Rigidbody>();
@@ -84,68 +90,19 @@ public class PlayerMovement : MonoBehaviour
 
             doneWashing = true;
 
-            /* if (hit.collider.CompareTag("sink"))
-             {
-
-
-
-                 GameObject sinkbar = hit.collider.transform.GetChild(0).gameObject;
-                 sinkbar.SetActive(true);
-                 hit.collider.GetComponent<SinkScript>().enabled = true;
-                 sinkbar.gameObject.GetComponentInChildren<SinkBar>().setwashingtime(0f);
-                 hit.collider.GetComponent<SinkScript>().washingtime = 0f;
-                 wash = true;
-             } */
-        }
-    }
-    public void ThrowButtonDown()
-    {      
-        if (pickedup == true)
-        {
-            Throw = ThrowStrengthIncrease();
-            StartCoroutine(Throw);
-        }
-    }
-
-    public void ThrowButtonUp()
-    {
-        StopCoroutine(Throw);
-        if (pickedup == true)
-        {
-            throwitem();
-            strength = 0;
-            throwing.setstrengthvalue(strength);
-            throwing.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-        }
-    }
-
-    public IEnumerator ThrowStrengthIncrease()
-    {
-        while (true)
-        {
-            if (strength >= 0 && strength <= 0.2f)
+            if (hit.collider.CompareTag("sink"))
             {
-                throwing.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-                throwing.setstrengthvalue(strength);
-                strength += 0.1f * Time.deltaTime;
-                yield return null;
+
+
+
+                GameObject sinkbar = hit.collider.transform.GetChild(0).gameObject;
+                sinkbar.SetActive(true);
+                hit.collider.GetComponent<SinkScript>().enabled = true;
+                sinkbar.gameObject.GetComponentInChildren<SinkBar>().setwashingtime(0f);
+                hit.collider.GetComponent<SinkScript>().washingtime = 0f;
+                wash = true;
             }
-            else
-            {
-                break;
-            }           
         }
-    }
-    public void throwitem()
-    {
-        GameObject child = transform.GetChild(2).gameObject;
-        child.SetActive(true);
-        
-        child.transform.parent = null;
-        Vector3 throwingstrength = (transform.forward + transform.up) * strength;
-        child.GetComponent<Rigidbody>().AddForce(throwingstrength, ForceMode.Impulse);
-        pickedup=false;
-
     }
 
     public void outlinesink()
@@ -260,45 +217,15 @@ public class PlayerMovement : MonoBehaviour
                 grabitem();
             }
         else if (pickedup == true)
-            {
-                GameObject child = transform.GetChild(2).gameObject;
-                child.SetActive(true);
-                child.transform.parent = null;
-                child.transform.position = transform.position + transform.forward * .15f;
-
-                anim.SetTrigger("dropped");
-                pickedup = false;
-
-        }
-    }
-
-    public void chargeItem()
-    {
         {
-            if (pickedup == true)
-            {
+            GameObject child = transform.GetChild(2).gameObject;
+            child.SetActive(true);
+            child.transform.parent = null;
+            child.transform.position = transform.position + transform.forward * .15f;
 
-                if (strength >= 0 && strength <= 0.2f)
-                {
-                    throwing.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-                    throwing.setstrengthvalue(strength);
-                    strength += 0.1f * Time.deltaTime;
+            anim.SetTrigger("dropped");
+            pickedup = false;
 
-                }
-            }
-        }
-    }
-
-    public void throwPower()
-    {
-        {
-            if (pickedup == true)
-            {
-                throwitem();
-                strength = 0;
-                throwing.setstrengthvalue(strength);
-                throwing.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-            }
         }
     }
 }

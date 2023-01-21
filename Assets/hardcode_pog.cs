@@ -150,7 +150,7 @@ public class hardcode_pog : MonoBehaviour
             pickup.SetActive(true);
         }
 
-        if (pm.pickedup || it)
+        if (PlayerMovement.getPickedUp() || it)
         {
             if (timer2 == 0)
             {
@@ -254,7 +254,7 @@ public class hardcode_pog : MonoBehaviour
                 cameraMovement.player = player.transform;
             }
 
-            if (timer2 > 11 && pm.pickedup && !sinkProgress)
+            if (timer2 > 11 && PlayerMovement.getPickedUp() && !sinkProgress)
             {
                 throwit.enabled = true;
                 throwit.text = "go to the sink";
