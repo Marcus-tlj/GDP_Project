@@ -21,7 +21,7 @@ public class Retry : MonoBehaviour
 
     public void retrygame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     public void leave()
     {
