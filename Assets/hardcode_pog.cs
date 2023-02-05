@@ -200,7 +200,7 @@ public class hardcode_pog : MonoBehaviour
 
 
             throwit.enabled = true;
-            throwit.color = Color.red;
+            throwit.color = Color.cyan;
             throwit.text = "Put items in their corresponding bins";
 
             cameraMovement.player = pos1.transform;
@@ -222,7 +222,7 @@ public class hardcode_pog : MonoBehaviour
                 metal.GetComponent<Renderer>().material.SetTexture("_MainTex", dirtyMetal);
                 junk.GetComponent<Renderer>().material.SetTexture("_MainTex", dirtyJunk);
 
-                throwit.color = Color.red;
+                throwit.color = Color.cyan;
                 throwit.text = "Some items can be dirty."; 
             }
             if (timer2 >= 6)

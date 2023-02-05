@@ -9,7 +9,7 @@ public class HighScore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        score.text = "Score: " + Global_Variables.TotalPoints;
+        score.text = "Score: " + PlayerPrefs.GetFloat("score");
         highscore.text = "HighScore: " + PlayerPrefs.GetFloat("HighScore");
     }
 

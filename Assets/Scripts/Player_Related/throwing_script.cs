@@ -29,7 +29,10 @@ public class throwing_script : MonoBehaviour
     public void ThrowButtonUp()
     {
         pickedup = PlayerMovement.getPickedUp();
-        StopCoroutine(Throw);
+        if (Throw != null)
+        {
+          StopCoroutine(Throw);
+        }        
         if (pickedup == true)
         {
             throwitem();
