@@ -23,7 +23,7 @@ public class spawn : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (time > 5)
+        if (time > 10)
         {
             // int number = Random.Range(0, items.Length);
             itemsSpawnList.Add(Instantiate(item, spawns.position, Quaternion.identity, spawns));

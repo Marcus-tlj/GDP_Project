@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: e0b679f1a1abd7944a00a7b287250dfa, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -12047,7 +12047,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -12066,7 +12066,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   m_LocalRotation: {x: 0.6816902, y: -0.09356782, z: 0.10082364, w: 0.7185946}
-  m_LocalPosition: {x: 0.009, y: 3.022, z: -0.016}
+  m_LocalPosition: {x: 0.009, y: 2.99, z: -0.016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19717,7 +19717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46da4006edfd7c34289b4c2b464ef555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  speed: 0.07
 --- !u!65 &1165687236
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26711,6 +26711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b29f211378c3ae84ab4087c26cbe178d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemText: {fileID: 0}
 --- !u!1 &1537498355
 GameObject:
   m_ObjectHideFlags: 0
@@ -44314,7 +44315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46da4006edfd7c34289b4c2b464ef555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  speed: 0.07
 --- !u!33 &5998178776907377813
 MeshFilter:
   m_ObjectHideFlags: 0

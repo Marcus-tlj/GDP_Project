@@ -67,10 +67,15 @@ public class throwing_script : MonoBehaviour
         GameObject child = transform.GetChild(2).gameObject;
         child.SetActive(true);
 
+        
         child.transform.parent = null;
+        child.GetComponent<Rigidbody>().isKinematic = false;
+        child.GetComponent<Collider>().enabled = true;
+        child.GetComponent<spinny>().enabled = false;
         Vector3 throwingstrength = (transform.forward + transform.up) * strength;
+        child.transform.position = child.transform.position - new Vector3(0, 0.4f) + transform.forward * .15f;
         child.GetComponent<Rigidbody>().AddForce(throwingstrength, ForceMode.Impulse);
         PlayerMovement.setPickedUp(false);
-        itemName.text = "";
+        //itemName.text = "";
     }
 }

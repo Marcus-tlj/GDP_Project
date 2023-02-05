@@ -1,13 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-public class Retry : MonoBehaviour
+public class Menu : MonoBehaviour
 {
-
     // Start is called before the first frame update
     void Start()
     {
@@ -17,15 +14,21 @@ public class Retry : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
-    public void retrygame()
+    public void Play()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("game_scene");
     }
-    public void leave()
+
+    public void Tutorial()
     {
-        SceneManager.LoadScene("main_menu");
+        SceneManager.LoadScene("tutorial");
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

@@ -160,12 +160,25 @@ public class PlayerMovement : MonoBehaviour
                     {
 
                         hit.collider.gameObject.transform.parent = transform;
-                        hit.collider.gameObject.SetActive(false);
+                        hit.collider.transform.position = transform.position + new Vector3(0,0.4f);
+                        hit.collider.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                        hit.collider.gameObject.GetComponent<Collider>().enabled = false;
+                        if (hit.collider.gameObject.GetComponent<spinny>() == null)
+                        {
+                            hit.collider.gameObject.AddComponent<spinny>();
+                        }
+                        else
+                        {
+                            hit.collider.gameObject.GetComponent<spinny>().enabled = true;
+                        }
+                       
+                        hit.collider.gameObject.transform.eulerAngles = new Vector3(-90,0,0);
+                        //hit.collider.gameObject.SetActive(false);
 
                         pickedup = true;
 
 
-                        if (hit.collider.CompareTag("plastic"))
+                       /* if (hit.collider.CompareTag("plastic"))
                         {
                             itemName.text = "Plastic Bottle";
                         }
@@ -184,7 +197,7 @@ public class PlayerMovement : MonoBehaviour
                         else
                         {
                             itemName.text = "Pack of rubbish";
-                        }
+                        }*/
                     }
                 }
             }
@@ -244,14 +257,17 @@ public class PlayerMovement : MonoBehaviour
         else if (pickedup == true)
         {
             GameObject child = transform.GetChild(2).gameObject;
-            child.SetActive(true);
+            //child.SetActive(true);
             child.transform.parent = null;
+            child.GetComponent<Rigidbody>().isKinematic = false;
+            child.GetComponent<Collider>().enabled = true;
+            child.GetComponent<spinny>().enabled = false;
             child.transform.position = transform.position + transform.forward * .15f;
 
             anim.SetTrigger("dropped");
             pickedup = false;
 
-            itemName.text = "";
+            //itemName.text = "";
         }
     }
 }

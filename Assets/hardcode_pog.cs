@@ -79,6 +79,7 @@ public class hardcode_pog : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        blur.enabled= false;
         cm1.speed = 0;
         cm2.speed= 0;
 
@@ -160,7 +161,7 @@ public class hardcode_pog : MonoBehaviour
                 bin.SetActive(true);
                 cameraMovement.player = bin.transform;
                 throwit.enabled = true;
-                blur.enabled = true;
+                //blur.enabled = true;
                 if (!done1)
                 {
                     timer = 0;
@@ -212,10 +213,15 @@ public class hardcode_pog : MonoBehaviour
             junk.SetActive(true);
 
             timer2 += Time.deltaTime;
-
-            if (timer2 >= 3)
+            if(timer2 >= 3)
+            {
+                cameraMovement.player = junk.transform;
+                throwit.text = "Toilet paper cannot be recycled. Throw it in the trash";
+            }
+            if (timer2 >= 6)
             {
                 //pm.pickedup = false;
+                cameraMovement.player = pos1.transform;
                 paper.GetComponent<Renderer>().material.SetTexture("_MainTex", dirtyPaper);
                 plastic.GetComponent<Renderer>().material.SetTexture("_MainTex", dirtyPlastic);
                 glass.GetComponent<Renderer>().material.SetTexture("_MainTex", dirtyGlass);
@@ -225,13 +231,14 @@ public class hardcode_pog : MonoBehaviour
                 throwit.color = Color.cyan;
                 throwit.text = "Some items can be dirty."; 
             }
-            if (timer2 >= 6)
+            if (timer2 >= 9)
             {
                 sink.SetActive(true);
                 throwit.text = "Dirty items must be washed first";
                 cameraMovement.player = sink.transform;
             }
-            if (timer2 >= 9)
+
+            if (timer2 >= 12)
             {
                 glass.SetActive(false);
                 metal.SetActive(false);
@@ -248,13 +255,13 @@ public class hardcode_pog : MonoBehaviour
 
                 throwit.text = "Pick up the dirty item";
             }
-            if (timer2 >= 11)
+            if (timer2 >= 14)
             {
                 throwit.enabled = false;
                 cameraMovement.player = player.transform;
             }
 
-            if (timer2 > 11 && PlayerMovement.getPickedUp() && !sinkProgress)
+            if (timer2 > 14 && PlayerMovement.getPickedUp() && !sinkProgress)
             {
                 throwit.enabled = true;
                 throwit.text = "go to the sink";
