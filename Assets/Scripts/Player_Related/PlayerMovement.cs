@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject washingParticle;
 
     public FixedJoystick mJoystick;
+
+    public TMP_Text itemName;
 
     //public GameObject heldObject;
 
@@ -160,6 +163,28 @@ public class PlayerMovement : MonoBehaviour
                         hit.collider.gameObject.SetActive(false);
 
                         pickedup = true;
+
+
+                        if (hit.collider.CompareTag("plastic"))
+                        {
+                            itemName.text = "Plastic Bottle";
+                        }
+                        else if (hit.collider.CompareTag("glass"))
+                        {
+                            itemName.text = "Glass Bottle";
+                        }
+                        else if (hit.collider.CompareTag("metal"))
+                        {
+                            itemName.text = "Metal Can";
+                        }
+                        else if (hit.collider.CompareTag("paper"))
+                        {
+                            itemName.text = "Cereal Box";
+                        }
+                        else
+                        {
+                            itemName.text = "Pack of rubbish";
+                        }
                     }
                 }
             }
@@ -226,6 +251,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetTrigger("dropped");
             pickedup = false;
 
+            itemName.text = "";
         }
     }
 }

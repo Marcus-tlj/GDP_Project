@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class throwing_script : MonoBehaviour
 {
     public throwing_slider throwing;
     private bool pickedup;
     private float strength;
+    public TMP_Text itemName;
 
     IEnumerator Throw;
     private void Start()
@@ -23,6 +25,7 @@ public class throwing_script : MonoBehaviour
             throwing.slider.gameObject.SetActive(true);
             Throw = ThrowStrengthIncrease();
             StartCoroutine(Throw);
+            //itemName.text = "";
         }
     }
 
@@ -68,5 +71,6 @@ public class throwing_script : MonoBehaviour
         Vector3 throwingstrength = (transform.forward + transform.up) * strength;
         child.GetComponent<Rigidbody>().AddForce(throwingstrength, ForceMode.Impulse);
         PlayerMovement.setPickedUp(false);
+        itemName.text = "";
     }
 }
