@@ -1033,7 +1033,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &7106211557426208602
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1050,7 +1050,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!54 &7190828515475205424
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1093,12 +1093,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ba407672d1cd24ba73f14c875bad1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursor: {fileID: 0}
+  isMoving: 0
+  washingParticle: {fileID: 0}
+  mJoystick: {fileID: 0}
+  itemName: {fileID: 0}
+  m_spawn: {fileID: 0}
+  canvas: {fileID: 0}
+  isPressed: 0
   walkSpeed: 1.5
   sprintSpeed: 2.5
   dashDelay: 20
   speedMultiplier: 10
   dashForce: 0.5
+  doneWashing: 0
+  sink: {fileID: 0}
+  wash: 0
+  cleanplastic: {fileID: 2800000, guid: e384b45fc040c5f4ab319c3b47930715, type: 3}
+  cleanbottle: {fileID: 2800000, guid: 4e45501242b6ec741a5d58804c22df43, type: 3}
+  cleanJunk: {fileID: 2800000, guid: 96f78a2eda80d7a4bb288acb6f48d228, type: 3}
+  cleanpaper: {fileID: 2800000, guid: 541c430536f81ac4fb52704d36899019, type: 3}
+  cleanmetal: {fileID: 2800000, guid: 2eb0316719ec8c54a8bcabcc3056a5f8, type: 3}
 --- !u!1 &7191942162089364318
 GameObject:
   m_ObjectHideFlags: 0

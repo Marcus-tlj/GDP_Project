@@ -42,6 +42,17 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Throw;
 
+    public Texture cleanplastic;
+
+    public Texture cleanbottle;
+
+    public Texture cleanJunk;
+
+    public Texture cleanpaper;
+
+    public Texture cleanmetal;
+
+
     public static bool getPickedUp()
     {
         return pickedup;
@@ -104,6 +115,31 @@ public class PlayerMovement : MonoBehaviour
                 sinkbar.gameObject.GetComponentInChildren<SinkBar>().setwashingtime(0f);
                 hit.collider.GetComponent<SinkScript>().washingtime = 0f;
                 wash = true;
+                if (transform.GetChild(2).transform.GetChild(0).gameObject.name == "BottleOfBeer(Clone)")
+                {
+                    print("Bottle");
+                    transform.GetChild(2).transform.GetChild(0).gameObject.GetComponent<Renderer>().material.SetTexture("_MainTex", cleanbottle);
+                }
+                else if (transform.GetChild(2).transform.GetChild(0).gameObject.name == "ToiletPaper2(Clone)")
+                {
+                    print("Bottle");
+                    transform.GetChild(2).transform.GetChild(0).gameObject.GetComponent<Renderer>().material.SetTexture("_MainTex", cleanJunk);
+                }
+                else if (transform.GetChild(2).transform.GetChild(0).gameObject.name == "Cola Can(Clone)")
+                {
+                    print("Bottle");
+                    transform.GetChild(2).transform.GetChild(0).gameObject.GetComponent<Renderer>().material.SetTexture("_MainTex", cleanmetal);
+                }
+                else if (transform.GetChild(2).transform.GetChild(0).gameObject.name == "Cereal(Clone)")
+                {
+                    print("Bottle");
+                    transform.GetChild(2).transform.GetChild(0).gameObject.GetComponent<Renderer>().material.SetTexture("_MainTex", cleanpaper);
+                }
+                else if (transform.GetChild(2).transform.GetChild(0).gameObject.name == "BottleOfWater(Clone)")
+                {
+                    print("Bottle");
+                    transform.GetChild(2).transform.GetChild(0).gameObject.GetComponent<Renderer>().material.SetTexture("_MainTex", cleanplastic);
+                }
             }
         }
     }

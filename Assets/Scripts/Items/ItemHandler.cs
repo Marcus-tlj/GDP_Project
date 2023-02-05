@@ -105,7 +105,7 @@ public class ItemHandler : MonoBehaviour
 
     private void Update()
     {
-        UpdateTexture(gameObject.transform.GetChild(0).gameObject);
+       // UpdateTexture(gameObject.transform.GetChild(0).gameObject);
     }
 
     void UpdateTexture(GameObject _item)
