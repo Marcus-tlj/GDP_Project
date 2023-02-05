@@ -37,14 +37,12 @@ public class DestroyItems : MonoBehaviour
     {
         if(currenttrsh >= 20)
         {
-            SceneManager.LoadScene(2);
-
-            if (Global_Variables.TotalPoints > PlayerPrefs.GetFloat("HighScore"))
-            {
-                PlayerPrefs.SetFloat("HighScore", Global_Variables.TotalPoints);
-                points.ResetGame();
-            }
-            
+          if (Global_Variables.TotalPoints > PlayerPrefs.GetFloat("HighScore"))
+          {
+            PlayerPrefs.SetFloat("HighScore", Global_Variables.TotalPoints);
+          }
+          points.ResetGame();
+          SceneManager.LoadScene(2);
         }
     }
 }
