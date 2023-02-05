@@ -30,7 +30,7 @@ public class TrashBin_Movements : MonoBehaviour
 
             transform.Rotate(0, 180, 0);
         }
-        if (speed < .5f)
+        if (speed < .3f)
         {
             if (time > 10)
             {
@@ -39,6 +39,16 @@ public class TrashBin_Movements : MonoBehaviour
             }
         }
     }
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Physics.IgnoreCollision(GetComponent<Collider>(), other.collider);
+        }
+    }
+
+
+
 
 
 }

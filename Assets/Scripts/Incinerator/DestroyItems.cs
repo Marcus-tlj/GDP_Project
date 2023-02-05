@@ -41,6 +41,7 @@ public class DestroyItems : MonoBehaviour
           {
             PlayerPrefs.SetFloat("HighScore", Global_Variables.TotalPoints);
           }
+            PlayerPrefs.SetFloat("score", Global_Variables.TotalPoints);
           points.ResetGame();
           SceneManager.LoadScene(2);
         }
