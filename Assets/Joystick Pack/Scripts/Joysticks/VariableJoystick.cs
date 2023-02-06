@@ -20,8 +20,6 @@ public class VariableJoystick : Joystick
             background.anchoredPosition = fixedPosition;
             background.gameObject.SetActive(true);
         }
-        else
-            background.gameObject.SetActive(false);
     }
 
     protected override void Start()
@@ -36,17 +34,14 @@ public class VariableJoystick : Joystick
         if(joystickType != JoystickType.Fixed)
         {
             background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
-            background.gameObject.SetActive(true);
         }
         base.OnPointerDown(eventData);
     }
 
     public override void OnPointerUp(PointerEventData eventData)
     {
-        if(joystickType != JoystickType.Fixed)
-            background.gameObject.SetActive(false);
-
-        base.OnPointerUp(eventData);
+      background.anchoredPosition = fixedPosition;
+      base.OnPointerUp(eventData);
     }
 
     protected override void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)

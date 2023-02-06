@@ -22,7 +22,7 @@ public class Retry : MonoBehaviour
 
     public void retrygame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("game_scene");
     }
     public void leave()
     {

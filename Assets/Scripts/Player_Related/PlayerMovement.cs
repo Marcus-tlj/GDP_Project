@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject washingParticle;
 
-    public FixedJoystick mJoystick;
+    public Joystick mJoystick;
 
     public TMP_Text itemName;
 
@@ -22,7 +22,10 @@ public class PlayerMovement : MonoBehaviour
     Animator anim;
     public spawn m_spawn;
     public Canvas canvas;
-    public bool isPressed;
+
+    public bool internaldelay = false;
+
+  public bool isPressed;
 
     public static float playerSpeed;
 
@@ -282,28 +285,36 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void pickItem()
+  public void pickItem()
+  {
+    Debug.Log("pickup");
+    if (pickedup == false && internaldelay == false)
     {
-        Debug.Log("pickup");
-        if (pickedup == false)
-            {
-                anim.SetTrigger("pickup");
-                grabitem();
-            }
-        else if (pickedup == true)
-        {
-            GameObject child = transform.GetChild(2).gameObject;
-            //child.SetActive(true);
-            child.transform.parent = null;
-            child.GetComponent<Rigidbody>().isKinematic = false;
-            child.GetComponent<Collider>().enabled = true;
-            child.GetComponent<spinny>().enabled = false;
-            child.transform.position = transform.position + transform.forward * .15f;
-
-            anim.SetTrigger("dropped");
-            pickedup = false;
-
-            //itemName.text = "";
-        }
+      anim.SetTrigger("pickup");
+      grabitem();
+      internaldelay = true;
+      StartCoroutine(InternalDelay());
     }
+    else if (pickedup == true && internaldelay == false)
+    {
+        GameObject child = transform.GetChild(2).gameObject;
+        //child.SetActive(true);
+        child.transform.parent = null;
+        child.GetComponent<Rigidbody>().isKinematic = false;
+        child.GetComponent<Collider>().enabled = true;
+        child.GetComponent<spinny>().enabled = false;
+        child.transform.position = transform.position + transform.forward * .15f;
+
+        anim.SetTrigger("dropped");
+        pickedup = false;
+
+        //itemName.text = "";
+    }
+  }
+
+  public IEnumerator InternalDelay()
+  {
+    yield return new WaitForSeconds(1);
+    internaldelay = false;
+  }
 }

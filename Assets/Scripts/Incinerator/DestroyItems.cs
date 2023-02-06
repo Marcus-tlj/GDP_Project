@@ -43,7 +43,7 @@ public class DestroyItems : MonoBehaviour
           }
             PlayerPrefs.SetFloat("score", Global_Variables.TotalPoints);
           points.ResetGame();
-          SceneManager.LoadScene(2);
+          SceneManager.LoadScene("end_scene");
         }
     }
 }
